@@ -3,12 +3,15 @@ package game;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 public class GameViewController {
 
     Game TestGame = new Game("AxBy94","Adb95","Uncle Ham Hogs","Piggystroicka", "Uppstream");
-    Pointer ObjPointer = new Pointer(true);
+    Pointer ObjPointer = new Pointer(false);
+    Pigs Pig11 = new Pigs("Sushi", "Sapper");
 
     //Turn label
     @FXML
@@ -56,6 +59,26 @@ public class GameViewController {
         P2TeamL.setText((TestGame.getPlayer2Team()));
     }
 
+    //Pig1.1 Labels & img
+    @FXML
+    Label Pig11Name;
+    public void displayCurrentPig11Name(Label Pig11Name) { Pig11Name.setText(Pig11.getName());}
+
+    @FXML
+    Label Pig11Rank;
+    public void displayCurrentPig11Rank(Label Pig11Rank) { Pig11Rank.setText(Pig11.getRank());}
+
+    @FXML
+    ImageView Pig11Img;
+
+    @FXML
+    Image ripImage = new Image(getClass().getResourceAsStream("img/Rip.jpg"));
+    public void displayRipPig11(){
+        Pig11Img.setImage(ripImage);
+        Pig11.setAlive(false);
+        ObjPointer.Co1.setIsUsable(false);
+    }
+
     //Circle Shaped Pointer
     @FXML
     Circle turnPointer;
@@ -75,10 +98,12 @@ public class GameViewController {
         displayCurrentPlayer2(P2Name);
         displayCurrentPlayer1Team(P1TeamL);
         displayCurrentPlayer2Team(P2TeamL);
+        displayCurrentPig11Name(Pig11Name);
+        displayCurrentPig11Rank(Pig11Rank);
         setStarAndNextLayoutP(turnPointer);
     }
 
-    // next Turn
+    // next Turn called by button
     public void addTurn(){
         TestGame.addTurn();
         displayCurrentTurn(currentTurn);

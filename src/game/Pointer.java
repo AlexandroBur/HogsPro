@@ -1,10 +1,15 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Pointer {
     //Definizione classe Coordinate
     public class Coordinata{
-        private int x;
-        private int y;
+        private final int x;
+        private final int y;
+        private boolean isUsable = true;
         //constructor
         public Coordinata(int X, int Y){
             x = X;
@@ -17,6 +22,12 @@ public class Pointer {
         public int getY(){
             return y;
         }
+        public boolean getIsUsable() { return isUsable; }
+
+        //setter
+        public void setIsUsable(boolean currentStatus ){
+            isUsable = currentStatus;
+        }
     }
     //definizioni paramenti del Pointer
     private int currentPointLayoutX;
@@ -25,18 +36,20 @@ public class Pointer {
     private boolean Player1Starts;
 
     //lista di possibili Coordinate del puntatore
-    private Coordinata Co1 = new Coordinata(360,130);
-    private Coordinata Co2 = new Coordinata(910,130);
-    private Coordinata Co3 = new Coordinata(360,230);
-    private Coordinata Co4 = new Coordinata(910,230);
-    private Coordinata Co5 = new Coordinata(360,330);
-    private Coordinata Co6 = new Coordinata(910,330);
-    private Coordinata Co7 = new Coordinata(360,430);
-    private Coordinata Co8 = new Coordinata(910,430);
-    private Coordinata Co9 = new Coordinata(360,530);
-    private Coordinata Co10 = new Coordinata(910,530);
+    public final Coordinata Co1 = new Coordinata(360,130);
+    public final Coordinata Co2 = new Coordinata(910,130);
+    public final Coordinata Co3 = new Coordinata(360,230);
+    public final Coordinata Co4 = new Coordinata(910,230);
+    public final Coordinata Co5 = new Coordinata(360,330);
+    public final Coordinata Co6 = new Coordinata(910,330);
+    public final Coordinata Co7 = new Coordinata(360,430);
+    public final Coordinata Co8 = new Coordinata(910,430);
+    public final Coordinata Co9 = new Coordinata(360,530);
+    public final Coordinata Co10 = new Coordinata(910,530);
 
-    private Coordinata[] possiblePoints = new Coordinata[10];
+    public Coordinata[] possiblePoints = new Coordinata[10];
+    public List<Coordinata> leftList =  new ArrayList<>(5);
+    public List<Coordinata> rightList = new ArrayList<>(5);
 
 
     //Constructor
@@ -57,7 +70,7 @@ public class Pointer {
             currentPointLayoutX = Co1.getX();
             currentPointLayoutY = Co1.getY();
         }
-        if(P1starts == false) {
+        if(!P1starts) {
             //sort array of points - def sequence of pointer
             possiblePoints[0] = Co2;
             possiblePoints[1] = Co1;
@@ -73,6 +86,16 @@ public class Pointer {
             currentPointLayoutX = Co2.getX();
             currentPointLayoutY = Co2.getY();
         }
+        leftList.add(Co1);
+        leftList.add(Co3);
+        leftList.add(Co5);
+        leftList.add(Co7);
+        leftList.add(Co9);
+        rightList.add(Co2);
+        rightList.add(Co4);
+        rightList.add(Co6);
+        rightList.add(Co8);
+        rightList.add(Co10);
     }
 
     //Getter
@@ -82,6 +105,7 @@ public class Pointer {
     public int getCurrentPointLayoutY(){
         return currentPointLayoutY;
     }
+    public int getCurrentPointInList() { return currentPointInList; }
 
     //Setter
     public void setNextPoint(){
@@ -89,9 +113,13 @@ public class Pointer {
         if(currentPointInList>9){
             currentPointInList = 0;
         }
+        if(!possiblePoints[this.currentPointInList].isUsable){
+            currentPointInList += 1;
+        }
+        //check if next point is available
         currentPointLayoutX = possiblePoints[this.currentPointInList].getX();
         currentPointLayoutY = possiblePoints[this.currentPointInList].getY();
-        //check if next point is available
+
         //switch to next set of points in the array
     }
 
