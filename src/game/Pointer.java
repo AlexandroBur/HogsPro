@@ -1,8 +1,5 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Pointer {
     //Definizione classe Coordinate
@@ -32,7 +29,6 @@ public class Pointer {
     //definizioni paramenti del Pointer
     private int currentPointLayoutX;
     private int currentPointLayoutY;
-    private int currentPointInList = 0;
     private boolean Player1Starts;
 
     //lista di possibili Coordinate del puntatore
@@ -47,55 +43,29 @@ public class Pointer {
     public final Coordinata Co9 = new Coordinata(360,530);
     public final Coordinata Co10 = new Coordinata(910,530);
 
-    public Coordinata[] possiblePoints = new Coordinata[10];
-    public List<Coordinata> leftList =  new ArrayList<>(5);
-    public List<Coordinata> rightList = new ArrayList<>(5);
+    //istaziamento di due LineUp
 
+    public LineUp startingPlayerLineUp;
+    public LineUp otherLineUp;
 
     //Constructor
     public Pointer(boolean P1starts){
-        if (P1starts) {
-            //def of sequence of pointer
-            possiblePoints[0] = Co1;
-            possiblePoints[1] = Co2;
-            possiblePoints[2] = Co3;
-            possiblePoints[3] = Co4;
-            possiblePoints[4] = Co5;
-            possiblePoints[5] = Co6;
-            possiblePoints[6] = Co7;
-            possiblePoints[7] = Co8;
-            possiblePoints[8] = Co9;
-            possiblePoints[9] = Co10;
+        Player1Starts = P1starts;
+        if (Player1Starts) {
+            //def of list of coordinates
+            startingPlayerLineUp = new LineUp(Co1,Co3,Co5,Co7,Co9);
+            otherLineUp = new LineUp(Co2,Co4,Co6,Co8,Co10);
             //def of starting point
             currentPointLayoutX = Co1.getX();
             currentPointLayoutY = Co1.getY();
-        }
-        if(!P1starts) {
+        } else {
             //sort array of points - def sequence of pointer
-            possiblePoints[0] = Co2;
-            possiblePoints[1] = Co1;
-            possiblePoints[2] = Co4;
-            possiblePoints[3] = Co3;
-            possiblePoints[4] = Co6;
-            possiblePoints[5] = Co5;
-            possiblePoints[6] = Co8;
-            possiblePoints[7] = Co7;
-            possiblePoints[8] = Co10;
-            possiblePoints[9] = Co9;
-            //def of starting point
+            startingPlayerLineUp = new LineUp(Co2,Co4,Co6,Co8,Co10);
+            otherLineUp = new LineUp(Co1,Co3,Co5,Co7,Co9);
+            //def of starting point 
             currentPointLayoutX = Co2.getX();
             currentPointLayoutY = Co2.getY();
         }
-        leftList.add(Co1);
-        leftList.add(Co3);
-        leftList.add(Co5);
-        leftList.add(Co7);
-        leftList.add(Co9);
-        rightList.add(Co2);
-        rightList.add(Co4);
-        rightList.add(Co6);
-        rightList.add(Co8);
-        rightList.add(Co10);
     }
 
     //Getter
@@ -105,22 +75,34 @@ public class Pointer {
     public int getCurrentPointLayoutY(){
         return currentPointLayoutY;
     }
-    public int getCurrentPointInList() { return currentPointInList; }
+    //public int getCurrentPointInList() { return currentPointInList; }
 
     //Setter
-    public void setNextPoint(){
-        currentPointInList += 1;
-        if(currentPointInList>9){
-            currentPointInList = 0;
+    public void setNextPoint(Game currentGame){
+        Coordinata nextCo;
+        if(currentGame.getCurrentTurn() % 2 == 0){
+            nextCo = otherLineUp.next();
+        } else {
+            nextCo = startingPlayerLineUp.next();
         }
-        if(!possiblePoints[this.currentPointInList].isUsable){
-            currentPointInList += 1;
-        }
-        //check if next point is available
-        currentPointLayoutX = possiblePoints[this.currentPointInList].getX();
-        currentPointLayoutY = possiblePoints[this.currentPointInList].getY();
+        currentPointLayoutX = nextCo.x;
+        currentPointLayoutY = nextCo.y;
 
-        //switch to next set of points in the array
     }
 
+    public void pointerRemoveFromLineUp(int index, Boolean LeftLineUp){
+        if(LeftLineUp){
+            if(Player1Starts){
+                startingPlayerLineUp.removeFromLineUp(index);
+            } else {
+                otherLineUp.removeFromLineUp(index);
+            }
+        } else {
+            if (Player1Starts){
+                otherLineUp.removeFromLineUp(index);
+            } else {
+                startingPlayerLineUp.removeFromLineUp(index);
+            }
+        }
+    }
 }
