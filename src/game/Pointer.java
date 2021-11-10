@@ -87,7 +87,6 @@ public class Pointer {
         }
         currentPointLayoutX = nextCo.x;
         currentPointLayoutY = nextCo.y;
-
     }
 
     public void pointerRemoveFromLineUp(int index, Boolean LeftLineUp){

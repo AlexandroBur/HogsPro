@@ -78,6 +78,11 @@ public class GameViewController {
         Pig11.setAlive(false);
         ObjPointer.pointerRemoveFromLineUp(0,true);
     }
+    // background image
+    @FXML
+    ImageView backGrImgV;
+    //@FXML  -  This code might get handy in the future
+    //Image background = new Image(getClass().getResourceAsStream("img/pigbkpc.jpg"));
 
     //Circle Shaped Pointer
     @FXML
