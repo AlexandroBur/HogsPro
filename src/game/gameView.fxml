@@ -6,25 +6,47 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameViewController">
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameViewController">
    <children>
-      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1294.0" pickOnBounds="true" smooth="false">
+      <ImageView fx:id="background" fitHeight="675.0" fitWidth="1212.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@img/pigbkpc.jpg" />
+            <Image url="@img/HogsProSchermata.png" />
          </image></ImageView>
-      <Button layoutX="470.0" layoutY="651.0" mnemonicParsing="false" onAction="#addTurn" text="Next Turn" />
-      <Label fx:id="mapName" layoutX="539.0" layoutY="10.0" prefHeight="47.0" prefWidth="229.0" text="Map Name" />
-      <Label fx:id="P1Name" layoutX="32.0" layoutY="21.0" prefHeight="47.0" prefWidth="114.0" text="P1 name" />
-      <Label fx:id="P1TeamL" layoutX="157.0" layoutY="21.0" prefHeight="47.0" prefWidth="114.0" text="P1 team" />
-      <Label fx:id="P2TeamL" layoutX="955.0" layoutY="27.0" prefHeight="47.0" prefWidth="114.0" text="P2 Team" />
-      <Label fx:id="P2Name" layoutX="1098.0" layoutY="33.0" prefHeight="47.0" prefWidth="114.0" text="P2 name" />
-      <Label fx:id="currentTurn" layoutX="641.0" layoutY="614.0" prefHeight="37.0" prefWidth="167.0" text="Current Turn : 0" />
-      <Button layoutX="470.0" layoutY="589.0" mnemonicParsing="false" onAction="#startGame" prefHeight="31.0" prefWidth="69.0" text="Start Game" />
-      <Circle fx:id="turnPointer" fill="DODGERBLUE" layoutX="592.0" layoutY="633.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="Pig11Name" layoutX="102.0" layoutY="106.0" text="Pig11 Name" />
-      <Label fx:id="Pig11Rank" layoutX="102.0" layoutY="131.0" text="Pig11 Rank" />
-      <ImageView fx:id="Pig11Img" fitHeight="60.0" fitWidth="75.0" layoutX="14.0" layoutY="94.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <Button layoutX="473.0" layoutY="587.0" mnemonicParsing="false" onAction="#addTurn" text="Next Turn" />
+      <Label fx:id="mapName" alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="39.0" prefHeight="47.0" prefWidth="334.0" text="Map Name" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Haettenschweiler" size="30.0" />
+         </font></Label>
+      <Label fx:id="P1Name" alignment="CENTER" layoutX="54.0" layoutY="30.0" prefHeight="47.0" prefWidth="218.0" text="P1 name" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Haettenschweiler" size="40.0" />
+         </font></Label>
+      <Label fx:id="P1TeamL" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="616.0" prefHeight="47.0" prefWidth="235.0" text="P1 team" textAlignment="CENTER" textFill="#7c7c7c">
+         <font>
+            <Font name="Haettenschweiler" size="40.0" />
+         </font></Label>
+      <Label fx:id="P2TeamL" alignment="CENTER" contentDisplay="CENTER" layoutX="915.0" layoutY="616.0" prefHeight="47.0" prefWidth="255.0" text="P2 Team" textAlignment="CENTER" textFill="#7c7c7c">
+         <font>
+            <Font name="Haettenschweiler" size="40.0" />
+         </font></Label>
+      <Label fx:id="P2Name" alignment="CENTER" layoutX="928.0" layoutY="30.0" prefHeight="47.0" prefWidth="227.0" text="P2 name" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Haettenschweiler" size="39.0" />
+         </font></Label>
+      <Label fx:id="currentTurn" alignment="CENTER" contentDisplay="CENTER" layoutX="502.0" layoutY="94.0" prefHeight="37.0" prefWidth="218.0" text="Current Turn : 0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Button layoutX="552.0" layoutY="584.0" mnemonicParsing="false" onAction="#startGame" prefHeight="31.0" prefWidth="69.0" text="Start Game" />
+      <Circle fx:id="turnPointer" fill="DODGERBLUE" layoutX="666.0" layoutY="600.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="Pig11Name" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="125.0" prefHeight="37.0" prefWidth="124.0" text="Pig11 Name" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Haettenschweiler" size="24.0" />
+         </font></Label>
+      <Label fx:id="Pig11Rank" alignment="CENTER" layoutX="191.0" layoutY="164.0" prefHeight="25.0" prefWidth="60.0" text="Pig11 Rank" textAlignment="CENTER" textFill="WHITE" />
+      <ImageView fx:id="Pig11Img" fitHeight="79.0" fitWidth="94.0" layoutX="43.0" layoutY="102.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image></ImageView>

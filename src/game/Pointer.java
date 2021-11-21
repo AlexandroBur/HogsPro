@@ -32,16 +32,16 @@ public class Pointer {
     private boolean Player1Starts;
 
     //lista di possibili Coordinate del puntatore
-    public final Coordinata Co1 = new Coordinata(360,130);
-    public final Coordinata Co2 = new Coordinata(910,130);
-    public final Coordinata Co3 = new Coordinata(360,230);
-    public final Coordinata Co4 = new Coordinata(910,230);
-    public final Coordinata Co5 = new Coordinata(360,330);
-    public final Coordinata Co6 = new Coordinata(910,330);
-    public final Coordinata Co7 = new Coordinata(360,430);
-    public final Coordinata Co8 = new Coordinata(910,430);
-    public final Coordinata Co9 = new Coordinata(360,530);
-    public final Coordinata Co10 = new Coordinata(910,530);
+    public final Coordinata Co1 = new Coordinata(350,140);
+    public final Coordinata Co2 = new Coordinata(840,140);
+    public final Coordinata Co3 = new Coordinata(350,250);
+    public final Coordinata Co4 = new Coordinata(840,250);
+    public final Coordinata Co5 = new Coordinata(350,360);
+    public final Coordinata Co6 = new Coordinata(840,360);
+    public final Coordinata Co7 = new Coordinata(350,470);
+    public final Coordinata Co8 = new Coordinata(840,470);
+    public final Coordinata Co9 = new Coordinata(350,580);
+    public final Coordinata Co10 = new Coordinata(840,580);
 
     //istaziamento di due LineUp
 
