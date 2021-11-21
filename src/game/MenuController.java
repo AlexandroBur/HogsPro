@@ -3,27 +3,30 @@ package game;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import org.w3c.dom.events.EventException;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class MenuController implements Initializable {
 
+public class MenuController implements Initializable {
     // TO DO :
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    private SceneController sceneController = new SceneController();
     // Definizione di liste con squadre e nomi dei mailaili in base alla squadra
     // Lista delle squadre
-    public String[] TeamsList = {"Tommy's Trotters", "Garlic Grunts", "Sow-A-Krauts", "Uncle Ham's Hogs", "Piggystroika", "Sushi Swine", "Mardy Pigs"};
-    //List<MenuItem> TeamsList1 = Arrays.asList(new MenuItem("Tommy's Trotters"),new MenuItem("Garlic Grunts"),new MenuItem("Sow-A-Krauts"),new MenuItem("Uncle Ham's Hogs"),new MenuItem("Piggystroika"),new MenuItem("Sushi Swine"),new MenuItem("Mardy Pigs"));
-    //List<MenuItem> TeamsList2 = Arrays.asList(new MenuItem("Tommy's Trotters"),new MenuItem("Garlic Grunts"),new MenuItem("Sow-A-Krauts"),new MenuItem("Uncle Ham's Hogs"),new MenuItem("Piggystroika"),new MenuItem("Sushi Swine"),new MenuItem("Mardy Pigs"));
-    // Array id Stringhe con i nomi dei ranghi
+    public String[] TeamsList = {"Tommy's Trotters", "Garlic Grunts", "Sow-A-Krauts", "Uncle Ham's Hogs", "Piggystroika", "Sushi Swine", "Mardy Pigs"};// Array id Stringhe con i nomi dei ranghi
     public String[] Ranks = {"Paratrooper", "Pyrotech", "Sniper", "Engineer", "Medic", "Grenadier"};
     // Array di stringhe con nomi dei maiali per ogni squadra
     public String[] UncleHamHogsPigs = {"Chucky", "Bobby-Joe", "Keanu", "Bobby-Jim", "Sly", "John-Boy", "Abraham", "Joey-Bob" };
@@ -40,6 +43,10 @@ public class MenuController implements Initializable {
     ChoiceBox<String> CbPlayer1Team;
     @FXML
     ChoiceBox<String> CbPlayer2Team;
+    @FXML
+    TextField Player1NameField;
+    @FXML
+    TextField Player2NameField;
     //TO DO Label e input nome player
 
     //Parte con le info dei Pig
@@ -187,15 +194,55 @@ public class MenuController implements Initializable {
 
     @FXML
     Button NewGameButton;
+    @FXML
+    Button StartNewGameBtn;
+    @FXML
+    Label ErrorLabel;
 
     public void testStart(){
         if(CbNamePig11.getItems().isEmpty() == false && CbNamePig21.getItems().isEmpty() == false){
             deleteChoiceBoxContent();
+        } else {
+            StartNewGameBtn.setLayoutX(530);
+            StartNewGameBtn.setLayoutY(100);
+            StartNewGameBtn.setText("Click Me When Ready");
         }
         setPig10ChoiceBox();
         setPig20ChoiceBox();
         setRanksChoiceBox();
         NewGameButton.setText("If you need to change team press me again");
+    }
+
+    public void startGame(ActionEvent event){
+        //TO DO :: aggiungere un try catch di modo che appaia un messaggio di errore se gli oggetti non sono completi
+        try {
+            Game ThisGame = new Game(Player1NameField.getText(), Player2NameField.getText(), CbPlayer1Team.getValue(), CbPlayer2Team.getValue());
+            Pigs Pig11 = new Pigs(CbNamePig11.getValue(), CbRank11.getValue());
+            Pigs Pig12 = new Pigs(CbNamePig12.getValue(), CbRank12.getValue());
+            Pigs Pig13 = new Pigs(CbNamePig13.getValue(), CbRank13.getValue());
+            Pigs Pig14 = new Pigs(CbNamePig14.getValue(), CbRank14.getValue());
+            Pigs Pig15 = new Pigs(CbNamePig15.getValue(), CbRank15.getValue());
+            Pigs Pig21 = new Pigs(CbNamePig21.getValue(), CbRank21.getValue());
+            Pigs Pig22 = new Pigs(CbNamePig22.getValue(), CbRank22.getValue());
+            Pigs Pig23 = new Pigs(CbNamePig23.getValue(), CbRank23.getValue());
+            Pigs Pig24 = new Pigs(CbNamePig24.getValue(), CbRank24.getValue());
+            Pigs Pig25 = new Pigs(CbNamePig25.getValue(), CbRank25.getValue());
+        } catch(NullPointerException e){
+            testStart();
+            ErrorLabel.setLayoutX(520);
+            ErrorLabel.setLayoutY(300);
+            ErrorLabel.setText("Enter all the Pig and Player information correctly");
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        // Go to Scene:: GameView
+        try {
+            sceneController.switchToSceneGameView(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
     }
 
     @Override
