@@ -7,11 +7,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
-public class GameViewController {
+import java.util.List;
 
-    Game TestGame = new Game("AxBy94","Adb95","Uncle Ham Hogs","Piggystroicka", "Uppstream");
+public class GameViewController {
+    //Game TestGame = new Game("AxBy94","Adb95","Uncle Ham Hogs","Piggystroicka", "Uppstream");
     Pointer ObjPointer = new Pointer(true);
-    Pigs Pig11 = new Pigs("Sushi", "Sapper");
+    //Pigs Pig11 = new Pigs("Sushi", "Sapper");
+    //Getting info from MenuController
+    MenuController menuController =  new MenuController();
+    Game TestGame = menuController.getThisGame();
+    List<Pigs> InGamePigs = menuController.getGamePigs();
+    Pigs Pig11 = InGamePigs.get(0);
 
     //Turn label
     @FXML
