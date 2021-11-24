@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SceneController {
     private Stage stage;
@@ -27,8 +28,12 @@ public class SceneController {
     }
 
 
-    public void switchToSceneGameView(ActionEvent e) throws IOException{
-        root = (Parent)FXMLLoader.load(getClass().getResource("gameView.fxml"));
+    public void switchToSceneGameView(ActionEvent e, Game gameMenu, List<Pigs> ListPigs) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gameView.fxml"));
+        root = loader.load();
+        GameViewController GVController = loader.getController();
+        GVController.setGame(gameMenu);
+        GVController.setPigsList(ListPigs);
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

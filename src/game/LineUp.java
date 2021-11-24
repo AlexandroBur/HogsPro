@@ -27,13 +27,18 @@ public class LineUp {
         }
         intCounter += 1;
         return coList.get(intCounter - 1);
-
-
-        // to do : decidere se passare oggetto al pointer o restituire le cordinate
     }
 
     public void removeFromLineUp(int index){
         coList.get(index).setIsUsable(false);
     }
 
+    public Boolean chekIfEmpty(){
+        for (Pointer.Coordinata Co : coList) {
+            if(Co.getIsUsable()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

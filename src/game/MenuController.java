@@ -19,6 +19,10 @@ import java.util.ResourceBundle;
 
 
 public class MenuController implements Initializable {
+    //needed to change scene
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     // TO DO :
     private SceneController sceneController = new SceneController();
     private Game ThisGame;
@@ -258,12 +262,14 @@ public class MenuController implements Initializable {
         GamesPig.add(9,Pig25);
         // Go to Scene:: GameView
         try {
-            sceneController.switchToSceneGameView(event);
-        } catch (IOException e) {
+            sceneController.switchToSceneGameView(event, getThisGame(), getGamePigs());
+        }
+        catch (IOException e) {
             e.printStackTrace();
             System.out.println(e);
         }
     }
+
     public List<Pigs> getGamePigs(){
         return GamesPig;
     }

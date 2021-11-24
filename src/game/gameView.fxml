@@ -74,47 +74,47 @@
          </font>
       </Label>
       <Label fx:id="Pig15Rank" alignment="CENTER" layoutX="192.0" layoutY="587.0" prefHeight="25.0" prefWidth="60.0" text="Pig15Rank" textAlignment="CENTER" textFill="WHITE" />
-      <ImageView fx:id="Pig12Img" fitHeight="78.0" fitWidth="90.0" layoutX="42.0" layoutY="205.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig12Img" fitHeight="78.0" fitWidth="90.0" layoutX="42.0" layoutY="205.0" onMouseClicked="#displayRipPig12" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig13Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="310.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig13Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="310.0" onMouseClicked="#displayRipPig13" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig14Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="415.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig14Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="415.0" onMouseClicked="#displayRipPig14" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig15Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="521.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig15Img" fitHeight="78.0" fitWidth="90.0" layoutX="43.0" layoutY="521.0" onMouseClicked="#displayRipPig15" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig21Img" fitHeight="78.0" fitWidth="90.0" layoutX="1075.0" layoutY="102.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig21Img" fitHeight="78.0" fitWidth="90.0" layoutX="1075.0" layoutY="102.0" onMouseClicked="#displayRipPig21" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig22Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="206.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig22Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="206.0" onMouseClicked="#displayRipPig22" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig23Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="311.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig23Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="311.0" onMouseClicked="#displayRipPig23" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig24Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="416.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig24Img" fitHeight="78.0" fitWidth="90.0" layoutX="1074.0" layoutY="416.0" onMouseClicked="#displayRipPig24" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="Pig25Img" fitHeight="78.0" fitWidth="90.0" layoutX="1075.0" layoutY="521.0" onMouseClicked="#displayRipPig11" pickOnBounds="true">
+      <ImageView fx:id="Pig25Img" fitHeight="78.0" fitWidth="90.0" layoutX="1075.0" layoutY="521.0" onMouseClicked="#displayRipPig25" pickOnBounds="true">
          <image>
             <Image url="@img/doge.jpg" />
          </image>
