@@ -4,7 +4,10 @@ package game;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
@@ -16,7 +19,7 @@ import java.util.ResourceBundle;
 public class GameViewController implements Initializable {
     private Parent root;
     //Game TestGame = new Game("AxBy94","Adb95","Uncle Ham Hogs","Piggystroicka", "Uppstream");
-    Pointer ObjPointer = new Pointer(true);
+    private Pointer ObjPointer;
     //Pigs Pig11 = new Pigs("Sushi", "Sapper");
     //Getting info from MenuController
     //MenuController menuController =  new MenuController();
@@ -41,6 +44,9 @@ public class GameViewController implements Initializable {
             mapName.setText("No Map Selected");
         }
     }
+
+    @FXML
+    Button StartBtn;
 
     //P1 Label
     @FXML
@@ -231,6 +237,28 @@ public class GameViewController implements Initializable {
         InGamePigs.get(9).setAlive(false);
         ObjPointer.pointerRemoveFromLineUp(4,false);
     }
+    @FXML
+    ToggleGroup Start = new ToggleGroup();
+    @FXML
+    RadioButton P1Starts;
+    @FXML
+    RadioButton P2Starts;
+
+    // Define active RadioButton and Init new Pointer
+    public void definePointer(){
+        if(P1Starts.isSelected() == true){
+            ObjPointer = new Pointer(true);
+        }
+        else if(P2Starts.isSelected() == true){
+            ObjPointer = new Pointer(false);
+        }
+        else{
+            currentTurn.setText("Plz select starting player");
+        }
+        P1Starts.setVisible(false);
+        P2Starts.setVisible(false);
+    }
+
     // background image
     //@FXML
     ///ImageView backGrImgV;
@@ -259,6 +287,7 @@ public class GameViewController implements Initializable {
     // start Game
 
     public void startGame(){
+        definePointer();
         //display game info
         displayCurrentMapName(mapName);
         displayCurrentPlayer1(P1Name);
@@ -287,6 +316,8 @@ public class GameViewController implements Initializable {
         displayCurrentPig24Rank(Pig24Rank);
         displayCurrentPig25Name(Pig25Name);
         displayCurrentPig25Rank(Pig25Rank);
+        setPigsPortrait();
+        StartBtn.setVisible(false);
         addTurn();
     }
 
@@ -295,14 +326,122 @@ public class GameViewController implements Initializable {
         CurrentGame.addTurn();
         displayCurrentTurn(currentTurn);
         //To do questo sistema di controllo non fuinziona
-        if(ObjPointer.otherLineUp.coList.isEmpty() == false || !ObjPointer.startingPlayerLineUp.coList.isEmpty() == false)
-            setStarAndNextLayoutP(turnPointer, CurrentGame);
-        else{
+        if(ObjPointer.otherLineUp.chekIfEmpty() == true || ObjPointer.startingPlayerLineUp.chekIfEmpty() == true){
             currentTurn.setText("The game is over");
+        } else {
+            setStarAndNextLayoutP(turnPointer, CurrentGame);
+        }
+    }
+
+    //Sets the correct Pig Img based on team
+    public void setPigsPortrait(){
+        switch (CurrentGame.getPlayer1Team()) {
+            case "Tommy's Trotters":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig1Green.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig2Green.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig3Green.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig4Green.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig5Green.png")));
+                break;
+            case "Garlic Grunts":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig1Blue.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig2Blue.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig3Blue.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig4Blue.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig5Blue.png")));
+                break;
+            case "Sow-A-Krauts":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig1Black.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig2Black.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig3Black.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig4Black.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig5Black.png")));
+                break;
+            case "Sushi Swine":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig1Yellow.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig2Yellow.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig3Yellow.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig4Yellow.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig5Yellow.png")));
+                break;
+            case "Uncle Ham's Hogs":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig1SkyBlue.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig2SkyBlue.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig3SkyBlue.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig4SkyBlue.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig5SkyBlue.png")));
+                break;
+            case "Piggystroika":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig1Red.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig2Red.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig3Red.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig4Red.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig5Red.png")));
+                break;
+            case "Mardy Pigs":
+                Pig11Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig1Purple.png")));
+                Pig12Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig2Purple.png")));
+                Pig13Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig3Purple.png")));
+                Pig14Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig4Purple.png")));
+                Pig15Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig5Purple.png")));
+                break;
+        }
+        switch (CurrentGame.getPlayer2Team()) {
+            case "Tommy's Trotters":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig1Green.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig2Green.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig3Green.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig4Green.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Green/Pig5Green.png")));
+                break;
+            case "Garlic Grunts":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig1Blue.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig2Blue.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig3Blue.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig4Blue.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Blue/Pig5Blue.png")));
+                break;
+            case "Sow-A-Krauts":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig1Black.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig2Black.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig3Black.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig4Black.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Black/Pig5Black.png")));
+                break;
+            case "Sushi Swine":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig1Yellow.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig2Yellow.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig3Yellow.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig4Yellow.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Yellow/Pig5Yellow.png")));
+                break;
+            case "Uncle Ham's Hogs":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig1SkyBlue.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig2SkyBlue.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig3SkyBlue.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig4SkyBlue.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/SkyBlue/Pig5SkyBlue.png")));
+                break;
+            case "Piggystroika":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig1Red.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig2Red.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig3Red.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig4Red.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Red/Pig5Red.png")));
+                break;
+            case "Mardy Pigs":
+                Pig21Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig1Purple.png")));
+                Pig22Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig2Purple.png")));
+                Pig23Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig3Purple.png")));
+                Pig24Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig4Purple.png")));
+                Pig25Img.setImage(new Image(getClass().getResourceAsStream("img/Pigs/Purple/Pig5Purple.png")));
+                break;
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        P1Starts.setToggleGroup(Start);
+        P2Starts.setToggleGroup(Start);
     }
 }

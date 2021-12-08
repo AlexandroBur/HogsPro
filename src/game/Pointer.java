@@ -78,6 +78,9 @@ public class Pointer {
     //public int getCurrentPointInList() { return currentPointInList; }
 
     //Setter
+    public void setPlayer1Starts(boolean bol){
+        Player1Starts = bol;
+    }
     public void setNextPoint(Game currentGame){
         Coordinata nextCo;
         if(currentGame.getCurrentTurn() % 2 == 0){

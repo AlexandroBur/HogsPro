@@ -33,12 +33,17 @@ public class LineUp {
         coList.get(index).setIsUsable(false);
     }
 
-    public Boolean chekIfEmpty(){
-        for (Pointer.Coordinata Co : coList) {
-            if(Co.getIsUsable()){
-                return true;
-            }
+    public Boolean chekIfEmpty() {
+        if (
+                coList.get(0).getIsUsable() == false &&
+                coList.get(1).getIsUsable() == false &&
+                coList.get(2).getIsUsable() == false &&
+                coList.get(3).getIsUsable() == false &&
+                coList.get(4).getIsUsable() == false
+        ) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }

@@ -50,6 +50,7 @@ public class MenuController implements Initializable {
     public String[] SowAKrautsPigs = { "Schnitzel", "Herr Kut", "Wolfie", "Lederhos", "Herman", "Schwein", "Herr Raid", "Herr Dry"};
     public String[] SushiSwinePigs = {"Sushi", "Kendo", "Shogun", "Raw Fish", "Kempo", "Tenko", "Feng Shui", "Ninja"};
     public String[] MardyPiPigs = {"Ade", "Fil", "Simon", "Jake", "Andy", "Ricki", "Philip", "Mark"};
+    public String[] Maps = { "High And Dry", "Grassy Knolls", "Pigs in Space", "Skullduggery", "Pigin'Hell","Graveyard Shift", "Ice-Flow", "You-Hillock", "Upstream", "Frost Fight", "The Lake", "Chill Hill", "Square Off", "One Way System", "Ridge Back", "Route Canal", "Pitch Invasion", "Bridge The Gap", "Canyon", "Well, Well, Well!", "Hedge Maze", "Hillbase", "Over The Top", "Pdrag" , "Death Valley", "Generated" };
 
     // injection FXML di tutte le menu button, label, choiceBox
     // Parte alta con info generali
@@ -105,6 +106,8 @@ public class MenuController implements Initializable {
     ChoiceBox<String> CbNamePig25;
     @FXML
     ChoiceBox<String> CbRank25;
+    @FXML
+    ChoiceBox<String> CbMap;
 
 
     // metodi relativi agli elementi in view
@@ -179,9 +182,9 @@ public class MenuController implements Initializable {
         CbNamePig24.getItems().addAll(ToUseArray);
         CbNamePig25.getItems().addAll(ToUseArray);
     }
-
     public void deleteChoiceBoxContent(){
         CbNamePig11.getItems().remove(0, 8);
+
         CbNamePig12.getItems().remove(0, 8);
         CbNamePig13.getItems().remove(0, 8);
         CbNamePig14.getItems().remove(0, 8);
@@ -230,7 +233,7 @@ public class MenuController implements Initializable {
     public void startGame(ActionEvent event){
         //TO DO :: aggiungere un try catch di modo che appaia un messaggio di errore se gli oggetti non sono completi
         try {
-            ThisGame = new Game(Player1NameField.getText(), Player2NameField.getText(), CbPlayer1Team.getValue(), CbPlayer2Team.getValue());
+            ThisGame = new Game(Player1NameField.getText(), Player2NameField.getText(), CbPlayer1Team.getValue(), CbPlayer2Team.getValue(), CbMap.getValue());
             Pig11 = new Pigs(CbNamePig11.getValue(), CbRank11.getValue());
             Pig12 = new Pigs(CbNamePig12.getValue(), CbRank12.getValue());
             Pig13 = new Pigs(CbNamePig13.getValue(), CbRank13.getValue());
@@ -282,6 +285,7 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         CbPlayer1Team.getItems().addAll(TeamsList);
         CbPlayer2Team.getItems().addAll(TeamsList);
+        CbMap.getItems().addAll(Maps);
     }
 
     // trovare sistema per passare tutti i dati raccolti

@@ -11,8 +11,8 @@
       <Button fx:id="NewGameButton" layoutX="530.0" layoutY="50.0" mnemonicParsing="false" onAction="#testStart" text="Create New Game" />
       <Button layoutX="530.0" layoutY="470.0" mnemonicParsing="false" text="Options" />
       <Button layoutX="530.0" layoutY="530.0" mnemonicParsing="false" text="Credits" />
-      <Button fx:id="StartNewGameBtn" onAction="#startGame"/>
-      <Label fx:id="ErrorLabel"/>
+      <Button fx:id="StartNewGameBtn" onAction="#startGame" />
+      <Label fx:id="ErrorLabel" />
       <Label layoutX="127.0" layoutY="111.0" text="Pig 1" />
       <Label layoutX="127.0" layoutY="183.0" text="Pig 2" />
       <Label layoutX="127.0" layoutY="260.0" text="Pig 3" />
@@ -51,5 +51,7 @@
       <ChoiceBox fx:id="CbRank25" layoutX="941.0" layoutY="424.0" prefHeight="17.0" prefWidth="112.0" />
       <ChoiceBox fx:id="CbPlayer1Team" layoutX="281.0" layoutY="68.0" prefHeight="25.0" prefWidth="122.0" />
       <ChoiceBox fx:id="CbPlayer2Team" layoutX="852.0" layoutY="68.0" prefHeight="17.0" prefWidth="122.0" />
+      <Label layoutX="557.0" layoutY="324.0" text="Map :" />
+      <ChoiceBox fx:id="CbMap" layoutX="509.0" layoutY="370.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
