@@ -156,7 +156,7 @@ public class GameViewController implements Initializable {
     public void displayCurrentPig25Rank(Label Pig25Rank) { Pig25Rank.setText(InGamePigs.get(9).getRank());}
     //Rip Img
     @FXML
-    Image ripImage = new Image(getClass().getResourceAsStream("img/Rip.jpg"));
+    Image ripImage = new Image(getClass().getResourceAsStream("img/Rip.png"));
 
     @FXML
     ImageView Pig11Img;
