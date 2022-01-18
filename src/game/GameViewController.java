@@ -154,6 +154,8 @@ public class GameViewController implements Initializable {
     @FXML
     Label Pig25Rank;
     public void displayCurrentPig25Rank(Label Pig25Rank) { Pig25Rank.setText(InGamePigs.get(9).getRank());}
+    @FXML
+    Button AddTurnBtn;
     //Rip Img
     @FXML
     Image ripImage = new Image(getClass().getResourceAsStream("img/Rip.png"));
@@ -257,13 +259,8 @@ public class GameViewController implements Initializable {
         }
         P1Starts.setVisible(false);
         P2Starts.setVisible(false);
+        AddTurnBtn.setVisible(true);
     }
-
-    // background image
-    //@FXML
-    ///ImageView backGrImgV;
-    //@FXML  -  This code might get handy in the future
-    //Image background = new Image(getClass().getResourceAsStream("img/pigbkpc.jpg"));
 
     //Circle Shaped Pointer
     @FXML
@@ -443,5 +440,6 @@ public class GameViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         P1Starts.setToggleGroup(Start);
         P2Starts.setToggleGroup(Start);
+        AddTurnBtn.setVisible(false);
     }
 }

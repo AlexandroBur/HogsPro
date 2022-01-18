@@ -14,7 +14,7 @@
       <ImageView fx:id="background" fitHeight="675.0" fitWidth="1212.0" pickOnBounds="true" smooth="false">
          <Image url="@img/HogsProSchermata.png" />
       </ImageView>
-      <Button layoutX="557.0" layoutY="587.0" mnemonicParsing="false" onAction="#addTurn" text="Next Turn" />
+      <Button fx:id="AddTurnBtn" layoutX="557.0" layoutY="587.0" mnemonicParsing="false" onAction="#addTurn" text="Next Turn" />
       <Label fx:id="mapName" alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="39.0" prefHeight="47.0" prefWidth="334.0" text="Map Name" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Haettenschweiler" size="30.0" />

@@ -49,7 +49,7 @@ public class MenuController implements Initializable {
     public String[] GarlicGruntsPigs = {"Cochon", "Le Cont", "Porc", "Glouton", "Goinfer", "Sanglier", "M.Chien", "Gerard"};
     public String[] SowAKrautsPigs = { "Schnitzel", "Herr Kut", "Wolfie", "Lederhos", "Herman", "Schwein", "Herr Raid", "Herr Dry"};
     public String[] SushiSwinePigs = {"Sushi", "Kendo", "Shogun", "Raw Fish", "Kempo", "Tenko", "Feng Shui", "Ninja"};
-    public String[] MardyPiPigs = {"Ade", "Fil", "Simon", "Jake", "Andy", "Ricki", "Philip", "Mark"};
+    public String[] MardyPiPigs = {"Ade", "Fil", "Simon", "Jake", "Andy", "Ricki", "Philip", "Mark", "Ben", "Badders", "Izzy", "Jim", "John", "Tapper", "Sweety", "Dolly", "Paul", "Shorty", "Martin", "James", "Test" };
     public String[] Maps = { "High And Dry", "Grassy Knolls", "Pigs in Space", "Skullduggery", "Pigin'Hell","Graveyard Shift", "Ice-Flow", "You-Hillock", "Upstream", "Frost Fight", "The Lake", "Chill Hill", "Square Off", "One Way System", "Ridge Back", "Route Canal", "Pitch Invasion", "Bridge The Gap", "Canyon", "Well, Well, Well!", "Hedge Maze", "Hillbase", "Over The Top", "Pdrag" , "Death Valley", "Generated" };
 
     // injection FXML di tutte le menu button, label, choiceBox
@@ -215,18 +215,25 @@ public class MenuController implements Initializable {
     Button StartNewGameBtn;
     @FXML
     Label ErrorLabel;
+    @FXML
+    Label infoLabel;
 
     public void testStart(){
         if(CbNamePig11.getItems().isEmpty() == false && CbNamePig21.getItems().isEmpty() == false){
             deleteChoiceBoxContent();
         } else {
+
             StartNewGameBtn.setLayoutX(530);
             StartNewGameBtn.setLayoutY(100);
+            StartNewGameBtn.setVisible(true);
             StartNewGameBtn.setText("Click Me When Ready");
         }
         setPig10ChoiceBox();
         setPig20ChoiceBox();
         setRanksChoiceBox();
+        infoLabel.setVisible(false);
+        NewGameButton.setLayoutX(530);
+        NewGameButton.setLayoutY(50);
         NewGameButton.setText("If you need to change team press me again");
     }
 
@@ -286,6 +293,7 @@ public class MenuController implements Initializable {
         CbPlayer1Team.getItems().addAll(TeamsList);
         CbPlayer2Team.getItems().addAll(TeamsList);
         CbMap.getItems().addAll(Maps);
+        StartNewGameBtn.setVisible(false);
     }
 
     // trovare sistema per passare tutti i dati raccolti
