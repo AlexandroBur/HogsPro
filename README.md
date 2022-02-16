@@ -1,4 +1,4 @@
-# HogsPro By Burgagni Aleandro aka AxBy94
+# HogsPro By Burgagni Alexandro aka AxBy94
 ----------------------------------- INSTALLAZIONE -----------------------------------------------
 Per poter usare il programma è necessario avere Java SE Development Kit 17.0.0, detto anche "Java SDK" nella sua versione più recente installato sulla macchina. Link https://www.oracle.com/java/technologies/downloads/
 Per poter accedere al programma usguire il file HogsPro-JavaFx.jar nella cartella Prod oppure clonare il repository in un IDE che includa la possibilità di builder un progetto in JavaFX
