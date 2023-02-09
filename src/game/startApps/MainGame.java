@@ -1,4 +1,4 @@
-package game;
+package game.startApps;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class MainGame extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = (Parent)FXMLLoader.load(getClass().getResource("gameView.fxml"));
+        Parent root = (Parent)FXMLLoader.load(getClass().getResource("../xmlLayouts/gameView.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

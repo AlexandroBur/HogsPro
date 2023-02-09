@@ -1,4 +1,4 @@
-package game;
+package game.startApps;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class MainMenu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         try{
-            Parent root = (Parent)FXMLLoader.load(getClass().getResource("menu.fxml"));
+            Parent root = (Parent)FXMLLoader.load(getClass().getResource("../xmlLayouts/menu.fxml"));
             primaryStage.setTitle("Hogs Pro");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

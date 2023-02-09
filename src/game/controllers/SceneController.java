@@ -1,5 +1,7 @@
-package game;
+package game.controllers;
 
+import game.models.Game;
+import game.models.Pigs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,7 +22,7 @@ public class SceneController {
     }
 
     public void switchToSceneMenu(ActionEvent e) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../xmlLayouts/menu.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene = new Scene(root);
@@ -29,7 +31,7 @@ public class SceneController {
 
 
     public void switchToSceneGameView(ActionEvent e, Game gameMenu, List<Pigs> ListPigs) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gameView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../xmlLayouts/gameView.fxml"));
         root = loader.load();
         GameViewController GVController = loader.getController();
         GVController.setGame(gameMenu);

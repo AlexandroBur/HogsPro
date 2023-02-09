@@ -1,5 +1,7 @@
-package game;
+package game.controllers;
 
+import game.models.Game;
+import game.models.Pigs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
