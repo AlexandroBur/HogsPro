@@ -8,17 +8,23 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="645.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controllers.MenuController">
+<AnchorPane prefHeight="645.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controllers.MenuController">
    <children>
-      <ImageView fitHeight="645.0" fitWidth="1214.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="675.0" fitWidth="1204.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/HogsProSchermataVuota.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="1204.0" layoutY="541.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../img/Sq.png" />
+         </image>
+      </ImageView>
       <Button fx:id="NewGameButton" layoutX="638.0" layoutY="68.0" mnemonicParsing="false" onAction="#testStart" text="Create New Game" />
-      <Button layoutX="540.0" layoutY="470.0" mnemonicParsing="false" text="Options" />
-      <Button layoutX="540.0" layoutY="530.0" mnemonicParsing="false" text="Credits" />
+      <Button layoutX="540.0" layoutY="433.0" mnemonicParsing="false" text="Options" />
+      <Button layoutX="540.0" layoutY="492.0" mnemonicParsing="false" text="Credits" />
       <Button fx:id="StartNewGameBtn" onAction="#startGame" />
       <Label fx:id="ErrorLabel" textAlignment="CENTER" textFill="WHITE" />
       <Label layoutX="81.0" layoutY="111.0" text="Pig 1" textAlignment="CENTER" textFill="WHITE" />
@@ -81,5 +87,11 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <Button fx:id="StartOpenCVAnalysis" layoutX="1187.0" onAction="#startGameAnalysis" />
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO HOGSPRO" textAlignment="CENTER" wrappingWidth="1194.7099609375">
+         <font>
+            <Font name="Arial Bold" size="55.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

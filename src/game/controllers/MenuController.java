@@ -216,6 +216,8 @@ public class MenuController implements Initializable {
     @FXML
     Button StartNewGameBtn;
     @FXML
+    Button StartOpenCVAnalysis;
+    @FXML
     Label ErrorLabel;
     @FXML
     Label infoLabel;
@@ -224,11 +226,14 @@ public class MenuController implements Initializable {
         if(CbNamePig11.getItems().isEmpty() == false && CbNamePig21.getItems().isEmpty() == false){
             deleteChoiceBoxContent();
         } else {
-
             StartNewGameBtn.setLayoutX(530);
             StartNewGameBtn.setLayoutY(100);
             StartNewGameBtn.setVisible(true);
             StartNewGameBtn.setText("Click Me When Ready");
+            StartOpenCVAnalysis.setLayoutX(530);
+            StartOpenCVAnalysis.setLayoutY(200);
+            StartOpenCVAnalysis.setVisible(true);
+            StartOpenCVAnalysis.setText("Click Me to Start Analysis");
         }
         setPig10ChoiceBox();
         setPig20ChoiceBox();
@@ -281,6 +286,8 @@ public class MenuController implements Initializable {
             System.out.println(e);
         }
     }
+
+    public void startGameAnalysis(ActionEvent event){}
 
     public List<Pigs> getGamePigs(){
         return GamesPig;
