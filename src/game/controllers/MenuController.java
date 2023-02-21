@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -147,11 +149,10 @@ public class MenuController implements Initializable {
         CbNamePig13.getItems().addAll(ToUseArray);
         CbNamePig14.getItems().addAll(ToUseArray);
         CbNamePig15.getItems().addAll(ToUseArray);
-
     }
     public void setPig20ChoiceBox(){
         String team = CbPlayer2Team.getValue();
-        String[] ToUseArray = MardyPiPigs;
+        String[] ToUseArray = MardyPiPigs; // MardyPigs is Set as a Default Option
         switch (team)
         {
             case "Tommy's Trotters":
@@ -184,18 +185,19 @@ public class MenuController implements Initializable {
         CbNamePig24.getItems().addAll(ToUseArray);
         CbNamePig25.getItems().addAll(ToUseArray);
     }
-    public void deleteChoiceBoxContent(){
-        CbNamePig11.getItems().remove(0, 8);
-
-        CbNamePig12.getItems().remove(0, 8);
-        CbNamePig13.getItems().remove(0, 8);
-        CbNamePig14.getItems().remove(0, 8);
-        CbNamePig15.getItems().remove(0, 8);
-        CbNamePig21.getItems().remove(0, 8);
-        CbNamePig22.getItems().remove(0, 8);
-        CbNamePig23.getItems().remove(0, 8);
-        CbNamePig24.getItems().remove(0, 8);
-        CbNamePig25.getItems().remove(0, 8);
+    public void deleteChoiceBoxContent10(){
+        CbNamePig11.getItems().remove(0,8);
+        CbNamePig12.getItems().remove(0,8);
+        CbNamePig13.getItems().remove(0,8);
+        CbNamePig14.getItems().remove(0,8);
+        CbNamePig15.getItems().remove(0,8);
+    }
+    public void deleteChoiceBoxContent20(){
+        CbNamePig21.getItems().remove(0,8);
+        CbNamePig22.getItems().remove(0,8);
+        CbNamePig23.getItems().remove(0,8);
+        CbNamePig24.getItems().remove(0,8);
+        CbNamePig25.getItems().remove(0,8);
     }
 
     public void setRanksChoiceBox(){
@@ -221,70 +223,168 @@ public class MenuController implements Initializable {
     Label ErrorLabel;
     @FXML
     Label infoLabel;
+    @FXML
+    Label LabelPig11;
+    @FXML
+    Label LabelPig12;
+    @FXML
+    Label LabelPig13;
+    @FXML
+    Label LabelPig14;
+    @FXML
+    Label LabelPig15;
+    @FXML
+    Label LabelPig21;
+    @FXML
+    Label LabelPig22;
+    @FXML
+    Label LabelPig23;
+    @FXML
+    Label LabelPig24;
+    @FXML
+    Label LabelPig25;
 
-    public void testStart(){
-        if(CbNamePig11.getItems().isEmpty() == false && CbNamePig21.getItems().isEmpty() == false){
-            deleteChoiceBoxContent();
+    // This method checks if the name and team of the 2 player are selected and then makes the Pigs Name/rank tag visible and the other buttons appear
+    public void startPreGame(){
+        // If the required field are not filled then infoLable changes
+        if(Player1NameField.getText().isEmpty() || Player2NameField.getText().isEmpty() || CbPlayer1Team.getValue().isEmpty() || CbPlayer2Team.getValue().isEmpty()){
+            infoLabel.setTextFill(Paint.valueOf("BLACK"));
+            infoLabel.setBackground(Background.fill(Paint.valueOf("WHITE")));
         } else {
+            setCenterPartVisible();
             StartNewGameBtn.setLayoutX(530);
             StartNewGameBtn.setLayoutY(100);
             StartNewGameBtn.setVisible(true);
-            StartNewGameBtn.setText("Click Me When Ready");
+            StartNewGameBtn.setText("Start Pen and Paper Mode");
             StartOpenCVAnalysis.setLayoutX(530);
             StartOpenCVAnalysis.setLayoutY(200);
             StartOpenCVAnalysis.setVisible(true);
-            StartOpenCVAnalysis.setText("Click Me to Start Analysis");
+            StartOpenCVAnalysis.setText("Start Analysis Mode");
+            setPig10ChoiceBox();
+            setPig20ChoiceBox();
+            setRanksChoiceBox();
+            infoLabel.setVisible(false);
+            NewGameButton.setVisible(false);
         }
-        setPig10ChoiceBox();
-        setPig20ChoiceBox();
-        setRanksChoiceBox();
-        infoLabel.setVisible(false);
-        NewGameButton.setLayoutX(530);
-        NewGameButton.setLayoutY(50);
-        NewGameButton.setText("If you need to change team press me again");
     }
 
-    public void startGame(ActionEvent event){
-        //TO DO :: aggiungere un try catch di modo che appaia un messaggio di errore se gli oggetti non sono completi
-        try {
-            ThisGame = new Game(Player1NameField.getText(), Player2NameField.getText(), CbPlayer1Team.getValue(), CbPlayer2Team.getValue(), CbMap.getValue());
-            Pig11 = new Pigs(CbNamePig11.getValue(), CbRank11.getValue());
-            Pig12 = new Pigs(CbNamePig12.getValue(), CbRank12.getValue());
-            Pig13 = new Pigs(CbNamePig13.getValue(), CbRank13.getValue());
-            Pig14 = new Pigs(CbNamePig14.getValue(), CbRank14.getValue());
-            Pig15 = new Pigs(CbNamePig15.getValue(), CbRank15.getValue());
-            Pig21 = new Pigs(CbNamePig21.getValue(), CbRank21.getValue());
-            Pig22 = new Pigs(CbNamePig22.getValue(), CbRank22.getValue());
-            Pig23 = new Pigs(CbNamePig23.getValue(), CbRank23.getValue());
-            Pig24 = new Pigs(CbNamePig24.getValue(), CbRank24.getValue());
-            Pig25 = new Pigs(CbNamePig25.getValue(), CbRank25.getValue());
-        } catch(NullPointerException e){
-            testStart();
+    private Boolean isOneOfCenterPartEmpty(){
+        try{
+            return CbNamePig11.getValue().isEmpty()||
+            CbNamePig12.getValue().isEmpty() ||
+            CbNamePig13.getValue().isEmpty() ||
+            CbNamePig15.getValue().isEmpty() ||
+            CbNamePig21.getValue().isEmpty() ||
+            CbNamePig22.getValue().isEmpty() ||
+            CbNamePig23.getValue().isEmpty() ||
+            CbNamePig24.getValue().isEmpty() ||
+            CbNamePig25.getValue().isEmpty() ||
+            CbRank11.getValue().isEmpty() ||
+            CbRank12.getValue().isEmpty() ||
+            CbRank13.getValue().isEmpty() ||
+            CbRank14.getValue().isEmpty() ||
+            CbRank15.getValue().isEmpty() ||
+            CbRank21.getValue().isEmpty() ||
+            CbRank22.getValue().isEmpty() ||
+            CbRank23.getValue().isEmpty() ||
+            CbRank24.getValue().isEmpty() ||
+            CbRank25.getValue().isEmpty();
+        } catch (NullPointerException e){
+            return true;
+        }
+    }
+
+    private void setCenterPartVisible() {
+        CbNamePig11.setVisible(true);
+        CbNamePig12.setVisible(true);
+        CbNamePig13.setVisible(true);
+        CbNamePig14.setVisible(true);
+        CbNamePig15.setVisible(true);
+        CbNamePig21.setVisible(true);
+        CbNamePig22.setVisible(true);
+        CbNamePig23.setVisible(true);
+        CbNamePig24.setVisible(true);
+        CbNamePig25.setVisible(true);
+        CbRank11.setVisible(true);
+        CbRank12.setVisible(true);
+        CbRank13.setVisible(true);
+        CbRank14.setVisible(true);
+        CbRank15.setVisible(true);
+        CbRank21.setVisible(true);
+        CbRank22.setVisible(true);
+        CbRank23.setVisible(true);
+        CbRank24.setVisible(true);
+        CbRank25.setVisible(true);
+        LabelPig11.setVisible(true);
+        LabelPig12.setVisible(true);
+        LabelPig13.setVisible(true);
+        LabelPig14.setVisible(true);
+        LabelPig15.setVisible(true);
+        LabelPig21.setVisible(true);
+        LabelPig22.setVisible(true);
+        LabelPig23.setVisible(true);
+        LabelPig24.setVisible(true);
+        LabelPig25.setVisible(true);
+    }
+
+    public void startGame(ActionEvent event) {
+        if(isOneOfCenterPartEmpty()){
             ErrorLabel.setLayoutX(520);
             ErrorLabel.setLayoutY(300);
+            ErrorLabel.setVisible(true);
             ErrorLabel.setText("Enter all the Pig and Player information correctly");
+        } else {
+            try {
+                ThisGame = new Game(Player1NameField.getText(), Player2NameField.getText(), CbPlayer1Team.getValue(), CbPlayer2Team.getValue(), CbMap.getValue());
+                Pig11 = new Pigs(CbNamePig11.getValue(), CbRank11.getValue());
+                Pig12 = new Pigs(CbNamePig12.getValue(), CbRank12.getValue());
+                Pig13 = new Pigs(CbNamePig13.getValue(), CbRank13.getValue());
+                Pig14 = new Pigs(CbNamePig14.getValue(), CbRank14.getValue());
+                Pig15 = new Pigs(CbNamePig15.getValue(), CbRank15.getValue());
+                Pig21 = new Pigs(CbNamePig21.getValue(), CbRank21.getValue());
+                Pig22 = new Pigs(CbNamePig22.getValue(), CbRank22.getValue());
+                Pig23 = new Pigs(CbNamePig23.getValue(), CbRank23.getValue());
+                Pig24 = new Pigs(CbNamePig24.getValue(), CbRank24.getValue());
+                Pig25 = new Pigs(CbNamePig25.getValue(), CbRank25.getValue());
+            } catch (NullPointerException e) {
+                ErrorLabel.setLayoutX(520);
+                ErrorLabel.setLayoutY(300);
+                ErrorLabel.setText("Enter all the Pig and Player information correctly");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            GamesPig.add(0, Pig11);
+            GamesPig.add(1, Pig12);
+            GamesPig.add(2, Pig13);
+            GamesPig.add(3, Pig14);
+            GamesPig.add(4, Pig15);
+            GamesPig.add(5, Pig21);
+            GamesPig.add(6, Pig22);
+            GamesPig.add(7, Pig23);
+            GamesPig.add(8, Pig24);
+            GamesPig.add(9, Pig25);
+            // Go to Scene:: GameView
+            try {
+                sceneController.switchToSceneGameView(event, getThisGame(), getGamePigs());
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println(e);
+            }
         }
-        catch(Exception e) {
-            System.out.println(e);
+    }
+
+    public void changeSelectionsOnComboBox10(){
+        if(!CbNamePig11.getItems().isEmpty()) {
+            deleteChoiceBoxContent10();
         }
-        GamesPig.add(0,Pig11);
-        GamesPig.add(1,Pig12);
-        GamesPig.add(2,Pig13);
-        GamesPig.add(3,Pig14);
-        GamesPig.add(4,Pig15);
-        GamesPig.add(5,Pig21);
-        GamesPig.add(6,Pig22);
-        GamesPig.add(7,Pig23);
-        GamesPig.add(8,Pig24);
-        GamesPig.add(9,Pig25);
-        // Go to Scene:: GameView
-        try {
-            sceneController.switchToSceneGameView(event, getThisGame(), getGamePigs());
+        setPig10ChoiceBox();
+    }
+
+    public void changeSelectionsOnComboBox20(){
+        if(!CbNamePig21.getItems().isEmpty()) {
+            deleteChoiceBoxContent20();
         }
-        catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
+        setPig20ChoiceBox();
     }
 
     public void startGameAnalysis(ActionEvent event){}
@@ -304,6 +404,7 @@ public class MenuController implements Initializable {
         CbMap.getItems().addAll(Maps);
         StartNewGameBtn.setVisible(false);
     }
+
 
     // trovare sistema per passare tutti i dati raccolti
     // passare i dati alla gameView tramite istanza di questa view.

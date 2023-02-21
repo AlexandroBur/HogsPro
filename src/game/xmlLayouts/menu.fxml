@@ -22,21 +22,22 @@
             <Image url="@../img/Sq.png" />
          </image>
       </ImageView>
-      <Button fx:id="NewGameButton" layoutX="638.0" layoutY="68.0" mnemonicParsing="false" onAction="#testStart" text="Create New Game" />
+      <Button fx:id="NewGameButton" layoutX="638.0" layoutY="68.0" mnemonicParsing="false" onAction="#startPreGame" text="Create New Game" />
       <Button layoutX="540.0" layoutY="433.0" mnemonicParsing="false" text="Options" />
       <Button layoutX="540.0" layoutY="492.0" mnemonicParsing="false" text="Credits" />
-      <Button fx:id="StartNewGameBtn" onAction="#startGame" />
-      <Label fx:id="ErrorLabel" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="81.0" layoutY="111.0" text="Pig 1" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="81.0" layoutY="183.0" text="Pig 2" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="81.0" layoutY="260.0" text="Pig 3" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="81.0" layoutY="332.0" text="Pig 4" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="81.0" layoutY="407.0" text="Pig 5" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="1096.0" layoutY="123.0" text="Pig 1" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="1096.0" layoutY="195.0" text="Pig 2" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="1096.0" layoutY="263.0" text="Pig 3" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="1096.0" layoutY="335.0" text="Pig 4" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="1096.0" layoutY="406.0" text="Pig 5" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="StartNewGameBtn" onAction="#startGame" visible="false"/>
+      <Button fx:id="StartOpenCVAnalysis" layoutX="1187.0" onAction="#startGameAnalysis" visible="false"/>
+      <Label fx:id="ErrorLabel" textAlignment="CENTER" textFill="WHITE" visible="false"/>
+      <Label fx:id="LabelPig11" layoutX="81.0" layoutY="111.0" text="Pig 1" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig12" layoutX="81.0" layoutY="183.0" text="Pig 2" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig13" layoutX="81.0" layoutY="260.0" text="Pig 3" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig14" layoutX="81.0" layoutY="332.0" text="Pig 4" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig15" layoutX="81.0" layoutY="407.0" text="Pig 5" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig21" layoutX="1096.0" layoutY="123.0" text="Pig 1" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig22" layoutX="1096.0" layoutY="195.0" text="Pig 2" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig23" layoutX="1096.0" layoutY="263.0" text="Pig 3" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig24" layoutX="1096.0" layoutY="335.0" text="Pig 4" textAlignment="CENTER" textFill="WHITE" visible="false" />
+      <Label fx:id="LabelPig25" layoutX="1096.0" layoutY="406.0" text="Pig 5" textAlignment="CENTER" textFill="WHITE" visible="false" />
       <TextField fx:id="Player1NameField" layoutX="66.0" layoutY="68.0" />
       <TextField fx:id="Player2NameField" layoutX="999.0" layoutY="67.0" />
       <Label layoutX="67.0" layoutY="38.0" prefHeight="25.0" prefWidth="131.0" text="Insert Player 1 Name:" textAlignment="CENTER" textFill="WHITE">
@@ -55,28 +56,28 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <ChoiceBox fx:id="CbNamePig11" layoutX="156.0" layoutY="111.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank11" layoutX="157.0" layoutY="141.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig12" layoutX="156.0" layoutY="183.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank12" layoutX="157.0" layoutY="213.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig13" layoutX="160.0" layoutY="255.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank13" layoutX="161.0" layoutY="285.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig14" layoutX="160.0" layoutY="327.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank14" layoutX="161.0" layoutY="357.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig15" layoutX="160.0" layoutY="403.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank15" layoutX="161.0" layoutY="433.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig21" layoutX="899.0" layoutY="114.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank21" layoutX="937.0" layoutY="144.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig22" layoutX="899.0" layoutY="186.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank22" layoutX="937.0" layoutY="216.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig23" layoutX="903.0" layoutY="258.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank23" layoutX="941.0" layoutY="288.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig24" layoutX="903.0" layoutY="330.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank24" layoutX="941.0" layoutY="360.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbNamePig25" layoutX="903.0" layoutY="406.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CbRank25" layoutX="941.0" layoutY="436.0" prefHeight="17.0" prefWidth="112.0" />
-      <ChoiceBox fx:id="CbPlayer1Team" layoutX="235.0" layoutY="68.0" prefHeight="25.0" prefWidth="122.0" />
-      <ChoiceBox fx:id="CbPlayer2Team" layoutX="852.0" layoutY="68.0" prefHeight="17.0" prefWidth="122.0" />
+      <ChoiceBox fx:id="CbNamePig11" layoutX="156.0" layoutY="111.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank11" layoutX="157.0" layoutY="141.0" prefHeight="17.0" prefWidth="112.0" visible="false"/>
+      <ChoiceBox fx:id="CbNamePig12" layoutX="156.0" layoutY="183.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank12" layoutX="157.0" layoutY="213.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig13" layoutX="160.0" layoutY="255.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank13" layoutX="161.0" layoutY="285.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig14" layoutX="160.0" layoutY="327.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank14" layoutX="161.0" layoutY="357.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig15" layoutX="160.0" layoutY="403.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank15" layoutX="161.0" layoutY="433.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig21" layoutX="899.0" layoutY="114.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank21" layoutX="937.0" layoutY="144.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig22" layoutX="899.0" layoutY="186.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank22" layoutX="937.0" layoutY="216.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig23" layoutX="903.0" layoutY="258.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank23" layoutX="941.0" layoutY="288.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig24" layoutX="903.0" layoutY="330.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank24" layoutX="941.0" layoutY="360.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbNamePig25" layoutX="903.0" layoutY="406.0" prefWidth="150.0" visible="false" />
+      <ChoiceBox fx:id="CbRank25" layoutX="941.0" layoutY="436.0" prefHeight="17.0" prefWidth="112.0" visible="false" />
+      <ChoiceBox fx:id="CbPlayer1Team" layoutX="235.0" layoutY="68.0" prefHeight="25.0" prefWidth="122.0" onAction="#changeSelectionsOnComboBox10" />
+      <ChoiceBox fx:id="CbPlayer2Team" layoutX="852.0" layoutY="68.0" prefHeight="17.0" prefWidth="122.0" onAction="#changeSelectionsOnComboBox20"/>
       <Label layoutX="567.0" layoutY="324.0" text="Map :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -87,7 +88,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="StartOpenCVAnalysis" layoutX="1187.0" onAction="#startGameAnalysis" />
       <Text fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO HOGSPRO" textAlignment="CENTER" wrappingWidth="1194.7099609375">
          <font>
             <Font name="Arial Bold" size="55.0" />
