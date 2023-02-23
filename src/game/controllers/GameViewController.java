@@ -4,6 +4,7 @@ package game.controllers;
 import game.models.Game;
 import game.models.Pigs;
 import game.models.Pointer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -15,12 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class GameViewController implements Initializable {
     private Parent root;
+    private SceneController sceneController = new SceneController();
     //Game TestGame = new Game("AxBy94","Adb95","Uncle Ham Hogs","Piggystroicka", "Uppstream");
     private Pointer ObjPointer;
     //Pigs Pig11 = new Pigs("Sushi", "Sapper");
@@ -50,6 +53,9 @@ public class GameViewController implements Initializable {
 
     @FXML
     Button StartBtn;
+
+    @FXML
+    Button BackToMainMenuBtn;
 
     //P1 Label
     @FXML
@@ -165,6 +171,7 @@ public class GameViewController implements Initializable {
 
     @FXML
     ImageView Pig11Img;
+
     public void displayRipPig11(){
         Pig11Img.setImage(ripImage);
         InGamePigs.get(0).setAlive(false);
@@ -251,10 +258,10 @@ public class GameViewController implements Initializable {
 
     // Define active RadioButton and Init new Pointer
     public void definePointer(){
-        if(P1Starts.isSelected() == true){
+        if(P1Starts.isSelected()){
             ObjPointer = new Pointer(true);
         }
-        else if(P2Starts.isSelected() == true){
+        else if(P2Starts.isSelected()){
             ObjPointer = new Pointer(false);
         }
         else{
@@ -325,9 +332,11 @@ public class GameViewController implements Initializable {
     public void addTurn(){
         CurrentGame.addTurn();
         displayCurrentTurn(currentTurn);
-        //To do questo sistema di controllo non fuinziona
-        if(ObjPointer.otherLineUp.chekIfEmpty() == true || ObjPointer.startingPlayerLineUp.chekIfEmpty() == true){
+        if(ObjPointer.otherLineUp.chekIfEmpty() || ObjPointer.startingPlayerLineUp.chekIfEmpty()){
             currentTurn.setText("The game is over");
+            BackToMainMenuBtn.setLayoutX(530);
+            BackToMainMenuBtn.setLayoutY(530);
+            BackToMainMenuBtn.setVisible(true);
         } else {
             setStarAndNextLayoutP(turnPointer, CurrentGame);
         }
@@ -436,6 +445,15 @@ public class GameViewController implements Initializable {
                 Pig24Img.setImage(new Image(getClass().getResourceAsStream("../img/Pigs/Purple/Pig4Purple.png")));
                 Pig25Img.setImage(new Image(getClass().getResourceAsStream("../img/Pigs/Purple/Pig5Purple.png")));
                 break;
+        }
+    }
+
+    public void BacktoMainMenu(ActionEvent event){
+        try {
+            sceneController.switchToSceneMenu(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e);
         }
     }
 

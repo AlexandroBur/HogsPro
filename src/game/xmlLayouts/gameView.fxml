@@ -151,5 +151,6 @@
       <Label fx:id="Pig25Rank" alignment="CENTER" layoutX="951.0" layoutY="589.0" prefHeight="25.0" prefWidth="60.0" text="Pig25Rank" textAlignment="CENTER" textFill="WHITE" />
       <RadioButton fx:id="P1Starts" layoutX="406.0" layoutY="535.0" mnemonicParsing="false" text="Player 1 Starts" textFill="WHITE" />
       <RadioButton fx:id="P2Starts" layoutX="649.0" layoutY="535.0" mnemonicParsing="false" text="Player 2 starts" textFill="WHITE" />
+      <Button fx:id="BackToMainMenuBtn" visible="false" text="Back To Main Menu" onAction="#BacktoMainMenu"></Button>
    </children>
 </AnchorPane>

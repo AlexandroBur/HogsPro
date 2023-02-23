@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+// This class just handles scene changes and what date is passed
 public class SceneController {
     private Stage stage;
     private Scene scene;
@@ -25,7 +26,7 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource("../xmlLayouts/menu.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 

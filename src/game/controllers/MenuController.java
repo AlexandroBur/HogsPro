@@ -3,21 +3,22 @@ package game.controllers;
 import game.models.Game;
 import game.models.Pigs;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import org.controlsfx.control.SearchableComboBox;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,7 +112,7 @@ public class MenuController implements Initializable {
     @FXML
     ChoiceBox<String> CbRank25;
     @FXML
-    ChoiceBox<String> CbMap;
+    SearchableComboBox<String> CbMap;
 
 
     // metodi relativi agli elementi in view
@@ -260,8 +261,6 @@ public class MenuController implements Initializable {
             StartOpenCVAnalysis.setLayoutY(200);
             StartOpenCVAnalysis.setVisible(true);
             StartOpenCVAnalysis.setText("Start Analysis Mode");
-            setPig10ChoiceBox();
-            setPig20ChoiceBox();
             setRanksChoiceBox();
             infoLabel.setVisible(false);
             NewGameButton.setVisible(false);
@@ -374,17 +373,50 @@ public class MenuController implements Initializable {
     }
 
     public void changeSelectionsOnComboBox10(){
-        if(!CbNamePig11.getItems().isEmpty()) {
+        String currentTeamSelection = CbPlayer1Team.getValue();
+        setPig10ChoiceBox();
+        if(CbNamePig11.getItems().size() > getSizeOfTeams(currentTeamSelection)){
             deleteChoiceBoxContent10();
         }
-        setPig10ChoiceBox();
     }
 
     public void changeSelectionsOnComboBox20(){
-        if(!CbNamePig21.getItems().isEmpty()) {
+        String currentTeamSelection = CbPlayer2Team.getValue();
+        setPig20ChoiceBox();
+        if(CbNamePig21.getItems().size() > getSizeOfTeams(currentTeamSelection)){
             deleteChoiceBoxContent20();
         }
-        setPig20ChoiceBox();
+    }
+
+    public int getSizeOfTeams(String teamName){
+        int res = 0;
+        switch (teamName) {
+            case "Tommy's Trotters":
+                res = TommysTrotterPigs.length;
+                break;
+            case "Garlic Grunts":
+                res = GarlicGruntsPigs.length;
+                break;
+            case "Sow-A-Krauts":
+                res = SowAKrautsPigs.length;
+                break;
+            case "Sushi Swine":
+                res = SushiSwinePigs.length;
+                break;
+            case "Uncle Ham's Hogs":
+                res = UncleHamHogsPigs.length;
+                break;
+            case "Piggystroika":
+                res = PiggystroikaPigs.length;
+                break;
+            case "Mardy Pigs":
+                res = MardyPiPigs.length;
+                break;
+            default:
+                System.out.println("Somrthig's wrong in team selection");
+        }
+        return res;
+
     }
 
     public void startGameAnalysis(ActionEvent event){}
@@ -396,6 +428,10 @@ public class MenuController implements Initializable {
         return ThisGame;
     }
 
+    public void printValue(Event e){
+        System.out.println(e.toString());
+        System.out.println(CbMap.getValue());
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -404,10 +440,6 @@ public class MenuController implements Initializable {
         CbMap.getItems().addAll(Maps);
         StartNewGameBtn.setVisible(false);
     }
-
-
-    // trovare sistema per passare tutti i dati raccolti
-    // passare i dati alla gameView tramite istanza di questa view.
 
 }
 
